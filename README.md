@@ -78,7 +78,10 @@ And six MCP tools for direct or custom-skill use.
 | `find_tool_friction`             | Tools that errored + your follow-up                                    |
 | `find_bash_patterns`             | Frequently-run Bash commands (normalized)                              |
 
-All accept an optional `window_days` override. Defaults to 7.
+All accept an optional `window_days` override. Defaults to 7. Pass
+`window_days: 0` to scan every session on disk (no time filter). The skills
+recognize "all time", "everything", or "full history" in your request and pass
+`0` automatically.
 
 ## Configuration
 

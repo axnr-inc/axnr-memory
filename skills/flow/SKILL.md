@@ -14,7 +14,9 @@ Translate observed patterns into concrete automation proposals.
    - `find_repeated_corrections`
    - `find_tool_friction`
    - `find_bash_patterns`
-   - Pass `window_days` if specified.
+   - Pass `window_days: 0` if the user said "all time" / "everything" / "full history".
+   - Pass an explicit number if the user said "last N days".
+   - Otherwise omit and let the configured default (7) stand.
 
 2. For each pattern result, synthesize a proposal. Use your judgment — these heuristics surface candidates, the framing is yours:
 

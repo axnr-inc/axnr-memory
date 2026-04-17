@@ -20,7 +20,7 @@ import transcripts  # noqa: E402
 
 PROTOCOL_VERSION = "2024-11-05"
 SERVER_NAME = "axnr"
-SERVER_VERSION = "0.4.0"
+SERVER_VERSION = "0.4.1"
 
 
 def load_settings() -> dict:
@@ -47,9 +47,16 @@ def load_settings() -> dict:
     return defaults
 
 
+def _coalesce_int(value, default):
+    """Like `value or default` but treats 0 as a real value, not a fallback trigger."""
+    if value is None:
+        return int(default)
+    return int(value)
+
+
 def _load(args: dict) -> tuple[list, dict]:
     settings = load_settings()
-    window = int(args.get("window_days") or settings["window_days"])
+    window = _coalesce_int(args.get("window_days"), settings["window_days"])
     sessions = transcripts.load_sessions(settings["transcripts_root"], window_days=window)
     return sessions, {"window_days": window, "min_cluster_frequency": int(settings["min_cluster_frequency"])}
 
@@ -172,7 +179,7 @@ def tool_get_session(args: dict) -> dict:
 
 def tool_find_repeated_corrections(args: dict) -> dict:
     sessions, ctx = _load(args)
-    min_freq = int(args.get("min_frequency") or ctx["min_cluster_frequency"])
+    min_freq = _coalesce_int(args.get("min_frequency"), ctx["min_cluster_frequency"])
     clusters = patterns.find_repeated_corrections(sessions, min_frequency=min_freq)
     return {
         "window_days": ctx["window_days"],
@@ -184,7 +191,7 @@ def tool_find_repeated_corrections(args: dict) -> dict:
 
 def tool_find_repeated_session_starts(args: dict) -> dict:
     sessions, ctx = _load(args)
-    min_sessions = int(args.get("min_sessions") or ctx["min_cluster_frequency"])
+    min_sessions = _coalesce_int(args.get("min_sessions"), ctx["min_cluster_frequency"])
     phrases = patterns.find_repeated_session_starts(sessions, min_sessions=min_sessions)
     return {
         "window_days": ctx["window_days"],
@@ -207,7 +214,7 @@ def tool_find_tool_friction(args: dict) -> dict:
 
 def tool_find_bash_patterns(args: dict) -> dict:
     sessions, ctx = _load(args)
-    min_freq = int(args.get("min_frequency") or ctx["min_cluster_frequency"])
+    min_freq = _coalesce_int(args.get("min_frequency"), ctx["min_cluster_frequency"])
     results = patterns.find_bash_patterns(sessions, min_frequency=min_freq)
     return {
         "window_days": ctx["window_days"],

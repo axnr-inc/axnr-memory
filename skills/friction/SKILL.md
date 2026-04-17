@@ -12,7 +12,9 @@ Produce a friction diagnostic from your transcripts.
 1. In parallel, call (from the `axnr` MCP server):
    - `find_repeated_corrections` — clusters of "no, not that" moments
    - `find_tool_friction` — tools that errored, with your follow-up
-   - (Pass `window_days` if specified.)
+   - Pass `window_days: 0` if the user said "all time" / "everything" / "full history".
+   - Pass an explicit number if the user said "last N days".
+   - Otherwise omit and let the configured default (7) stand.
 
 2. Render three sections. If a section has zero results, print `- (none in window)` — do not fabricate.
 

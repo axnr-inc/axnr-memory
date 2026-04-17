@@ -9,7 +9,10 @@ Produce a readable work log from your Claude Code transcripts.
 
 ## Steps
 
-1. Call the `list_sessions` MCP tool (from the `axnr` MCP server). Pass `window_days` if the user specified one; otherwise let the default stand.
+1. Call the `list_sessions` MCP tool (from the `axnr` MCP server).
+   - If the user said "all time", "everything", "all sessions", "full history", or similar, pass `window_days: 0` to scan every session on disk.
+   - If the user gave a number (e.g. "last 30 days"), pass `window_days: 30`.
+   - Otherwise pass nothing and let the configured default (7) stand.
 2. Group the returned sessions by `project_slug` (preserve insertion order — already sorted by start time).
 3. For each project group, render:
 
@@ -30,4 +33,4 @@ Markdown. No preamble. No trailing summary beyond the totals line.
 ## Notes
 
 - Exclude sessions with `prompt_count == 0` — those are cold starts with no real activity.
-- If `window_days` is in the user's request, pass it through. Otherwise rely on the server default.
+- `window_days: 0` means "scan every session on disk" — use it when the user asks for all-time / complete history.
