@@ -1,0 +1,6 @@
+{
+  "transcripts_root": "~/.claude/projects",
+  "window_days": 7,
+  "min_cluster_frequency": 2,
+  "max_session_messages_returned": 200
+}

@@ -1,0 +1,16 @@
+{
+  "name": "axnr-devx-introspect",
+  "version": "0.2.0",
+  "description": "Solo DevX introspection: reads your local Claude Code transcripts and surfaces automation candidates — repeated corrections, repeated session-openers, tool friction, and Bash command patterns.",
+  "author": {
+    "name": "Sashank",
+    "email": "sashank@glitchcraft.io"
+  },
+  "mcpServers": {
+    "axnr-devx-introspect": {
+      "command": "python3",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/analytics-server/server.py"]
+    }
+  },
+  "skills": "./skills/"
+}
