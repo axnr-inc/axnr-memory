@@ -1,5 +1,5 @@
 {
-  "name": "axnr-devx",
+  "name": "axnr-memory",
   "owner": {
     "name": "Sashank",
     "email": "sashank@actioneer.com"
@@ -8,8 +8,8 @@
     {
       "name": "axnr",
       "source": "./",
-      "description": "Solo DevX introspection over your own Claude Code transcripts. Surfaces repeated corrections, repeated session-opener phrases, tool friction, and frequent Bash commands — ranked automation candidates for skills, memory entries, and plugins.",
-      "version": "0.3.0"
+      "description": "Solo introspection over your own Claude Code transcripts. Surfaces repeated corrections, repeated session-opener phrases, tool friction, and frequent Bash commands — ranked automation candidates for skills, memory entries, and plugins.",
+      "version": "0.4.0"
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 name: friction
-description: Surface where you lost time or had to correct Claude over the last N days — repeated corrections, tool errors you had to respond to, and tools that fail often. Use when you want a diagnostic of DevX friction before deciding what to automate.
+description: Surface where you lost time or had to correct Claude over the last N days — repeated corrections, tool errors you had to respond to, and tools that fail often. Use when you want a diagnostic of workflow friction before deciding what to automate.
 ---
 
 # /axnr:friction

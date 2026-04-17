@@ -1,6 +1,6 @@
 ---
 name: flow
-description: Propose specific skills, memory entries, CLAUDE.md additions, or plugin ideas to build — derived from patterns in your own Claude Code transcripts over the last N days. Use when you want a ranked action list for improving your DevX flow.
+description: Propose specific skills, memory entries, CLAUDE.md additions, or plugin ideas to build — derived from patterns in your own Claude Code transcripts over the last N days. Use when you want a ranked action list for improving your workflow.
 ---
 
 # /axnr:flow

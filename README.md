@@ -1,6 +1,6 @@
 # axnr (Claude Code Plugin)
 
-Solo DevX introspection over your own Claude Code transcripts. Reads
+Solo introspection over your own Claude Code transcripts. Reads
 `~/.claude/projects/**/*.jsonl` — full fidelity, no anonymization, local only —
 and surfaces concrete automation candidates: repeated corrections, repeated
 session-opener phrases, tool failures, frequent Bash commands.
@@ -39,19 +39,19 @@ full transcripts locally — this plugin is a pure reader + heuristic detector
 ### From GitHub
 
 ```
-/plugin marketplace add axnr-inc/axnr-devx-introspect
-/plugin install axnr@axnr-devx
+/plugin marketplace add axnr-inc/axnr-memory
+/plugin install axnr@axnr-memory
 ```
 
 The repo root is both the marketplace (via `.claude-plugin/marketplace.json`)
-and the plugin (via `.claude-plugin/plugin.json`). `@axnr-devx` references
+and the plugin (via `.claude-plugin/plugin.json`). `@axnr-memory` references
 the marketplace name.
 
 ### Local (development / dogfooding)
 
 ```
 /plugin marketplace add /absolute/path/to/plugin
-/plugin install axnr@axnr-devx
+/plugin install axnr@axnr-memory
 ```
 
 Point `marketplace add` at the directory that contains `.claude-plugin/`.

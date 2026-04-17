@@ -1,7 +1,7 @@
 {
   "name": "axnr",
-  "version": "0.3.0",
-  "description": "Solo DevX introspection: reads your local Claude Code transcripts and surfaces automation candidates — repeated corrections, repeated session-openers, tool friction, and Bash command patterns.",
+  "version": "0.4.0",
+  "description": "Solo introspection over your own Claude Code transcripts. Surfaces repeated corrections, repeated session-openers, tool friction, and Bash command patterns — ranked automation candidates for skills, memory entries, and CLAUDE.md additions.",
   "author": {
     "name": "Sashank",
     "email": "sashank@actioneer.com"

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MCP server for axnr-devx-introspect.
+"""MCP server for axnr.
 
 Reads your Claude Code transcripts (~/.claude/projects/**/*.jsonl) and exposes
 tools for querying, searching, and surfacing automation candidates from your
@@ -20,7 +20,7 @@ import transcripts  # noqa: E402
 
 PROTOCOL_VERSION = "2024-11-05"
 SERVER_NAME = "axnr"
-SERVER_VERSION = "0.3.0"
+SERVER_VERSION = "0.4.0"
 
 
 def load_settings() -> dict:
