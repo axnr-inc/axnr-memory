@@ -1,15 +1,15 @@
 ---
-name: what-did-i-do
+name: logs
 description: Generate a narrative work log from your Claude Code sessions over the last N days — grouped by project, with first prompts, durations, and tool usage. Use when you want to recall what you worked on, write a weekly update, or orient yourself before a retro.
 ---
 
-# /what-did-i-do
+# /axnr:logs
 
 Produce a readable work log from your Claude Code transcripts.
 
 ## Steps
 
-1. Call the `list_sessions` MCP tool (from the `axnr-devx-introspect` server). Pass `window_days` if the user specified one; otherwise let the default stand.
+1. Call the `list_sessions` MCP tool (from the `axnr` MCP server). Pass `window_days` if the user specified one; otherwise let the default stand.
 2. Group the returned sessions by `project_slug` (preserve insertion order — already sorted by start time).
 3. For each project group, render:
 

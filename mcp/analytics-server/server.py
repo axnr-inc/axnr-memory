@@ -19,8 +19,8 @@ import transcripts  # noqa: E402
 
 
 PROTOCOL_VERSION = "2024-11-05"
-SERVER_NAME = "axnr-devx-introspect"
-SERVER_VERSION = "0.2.0"
+SERVER_NAME = "axnr"
+SERVER_VERSION = "0.3.0"
 
 
 def load_settings() -> dict:

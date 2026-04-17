@@ -1,4 +1,4 @@
-# axnr-devx-introspect (Claude Code Plugin)
+# axnr (Claude Code Plugin)
 
 Solo DevX introspection over your own Claude Code transcripts. Reads
 `~/.claude/projects/**/*.jsonl` — full fidelity, no anonymization, local only —
@@ -10,17 +10,17 @@ session-opener phrases, tool failures, frequent Bash commands.
 ```
 plugin/
 ├── .claude-plugin/
-│   ├── plugin.json                     Plugin manifest (MCP + skills)
-│   └── marketplace.json                Marketplace manifest (single-plugin marketplace)
-├── settings.json                       transcripts_root, window_days, thresholds
+│   ├── plugin.json                Plugin manifest (MCP + skills)
+│   └── marketplace.json           Marketplace manifest (single-plugin marketplace)
+├── settings.json                  transcripts_root, window_days, thresholds
 ├── mcp/analytics-server/
-│   ├── server.py                       Stdio MCP server
-│   ├── transcripts.py                  Parses ~/.claude/projects/*/<session>.jsonl
-│   └── patterns.py                     Heuristic pattern detectors
+│   ├── server.py                  Stdio MCP server
+│   ├── transcripts.py             Parses ~/.claude/projects/*/<session>.jsonl
+│   └── patterns.py                Heuristic pattern detectors
 ├── skills/
-│   ├── what-did-i-do/SKILL.md          /axnr-devx-introspect:what-did-i-do
-│   ├── find-friction/SKILL.md          /axnr-devx-introspect:find-friction
-│   └── suggest-automations/SKILL.md    /axnr-devx-introspect:suggest-automations
+│   ├── logs/SKILL.md              /axnr:logs
+│   ├── friction/SKILL.md          /axnr:friction
+│   └── flow/SKILL.md              /axnr:flow
 └── README.md
 ```
 
@@ -29,33 +29,29 @@ machine.
 
 ## Why this exists
 
-The first version of this plugin was aggregate enterprise analytics with
-anonymization via hooks. Wrong tool for the job: I wanted to understand *my
-own* patterns to figure out what skills/plugins to build. That needs full
-transcript text, not redacted aggregates.
-
-Claude Code already writes everything locally — full role/content/tool-calls —
-so this plugin is a pure reader + heuristic detector + skills layer over what
-already exists on disk.
+I wanted to understand my own Claude Code patterns and turn them into concrete
+skills, memory entries, and CLAUDE.md additions. Claude Code already writes
+full transcripts locally — this plugin is a pure reader + heuristic detector
++ skills layer over what already exists on disk.
 
 ## Install and use
 
-### From GitHub (once pushed)
+### From GitHub
 
 ```
-/plugin marketplace add <owner>/<repo>
-/plugin install axnr-devx-introspect@axnr-devx
+/plugin marketplace add axnr-inc/axnr-devx-introspect
+/plugin install axnr@axnr-devx
 ```
 
 The repo root is both the marketplace (via `.claude-plugin/marketplace.json`)
 and the plugin (via `.claude-plugin/plugin.json`). `@axnr-devx` references
 the marketplace name.
 
-### Local (for development or dogfooding before pushing)
+### Local (development / dogfooding)
 
 ```
 /plugin marketplace add /absolute/path/to/plugin
-/plugin install axnr-devx-introspect@axnr-devx
+/plugin install axnr@axnr-devx
 ```
 
 Point `marketplace add` at the directory that contains `.claude-plugin/`.
@@ -65,22 +61,22 @@ Reload Claude Code, and the MCP server and skills register automatically.
 
 From any Claude Code session:
 
-- `/axnr-devx-introspect:what-did-i-do` — narrative work log for the last 7 days
-- `/axnr-devx-introspect:find-friction` — corrections + tool errors
-- `/axnr-devx-introspect:suggest-automations` — ranked skill/memory/plugin proposals
+- `/axnr:logs` — narrative work log for the last 7 days
+- `/axnr:friction` — corrections + tool errors
+- `/axnr:flow` — ranked skill/memory/plugin proposals
 
-And six MCP tools for direct/custom use (see below).
+And six MCP tools for direct or custom-skill use.
 
-## MCP tools (for direct use or custom skills)
+## MCP tools
 
 | Tool                             | Returns                                                                |
 |----------------------------------|------------------------------------------------------------------------|
-| `list_sessions`                  | Session rows with project, branch, duration, first/last prompt        |
-| `get_session`                    | Full messages (role, text, tool_uses, tool_results) for one session   |
-| `find_repeated_corrections`      | Clusters of "no, not that"-style corrections + preceding context      |
-| `find_repeated_session_starts`   | Opener phrases that appear across multiple sessions                   |
-| `find_tool_friction`             | Tools that errored + your follow-up                                   |
-| `find_bash_patterns`             | Frequently-run Bash commands (normalized)                             |
+| `list_sessions`                  | Session rows with project, branch, duration, first/last prompt         |
+| `get_session`                    | Full messages (role, text, tool_uses, tool_results) for one session    |
+| `find_repeated_corrections`      | Clusters of "no, not that"-style corrections + preceding context       |
+| `find_repeated_session_starts`   | Opener phrases that appear across multiple sessions                    |
+| `find_tool_friction`             | Tools that errored + your follow-up                                    |
+| `find_bash_patterns`             | Frequently-run Bash commands (normalized)                              |
 
 All accept an optional `window_days` override. Defaults to 7.
 
@@ -114,7 +110,7 @@ no `requests` import.
 Correction detection in particular is coarse — if it misses the way *you*
 phrase corrections, edit `CORRECTION_PHRASES` in `patterns.py`.
 
-## Out of scope (v1)
+## Out of scope
 
 - LLM-based synthesis of patterns. Heuristics first, Claude API calls later if
   heuristics feel thin.

@@ -1,15 +1,15 @@
 ---
-name: find-friction
+name: friction
 description: Surface where you lost time or had to correct Claude over the last N days — repeated corrections, tool errors you had to respond to, and tools that fail often. Use when you want a diagnostic of DevX friction before deciding what to automate.
 ---
 
-# /find-friction
+# /axnr:friction
 
 Produce a friction diagnostic from your transcripts.
 
 ## Steps
 
-1. In parallel, call:
+1. In parallel, call (from the `axnr` MCP server):
    - `find_repeated_corrections` — clusters of "no, not that" moments
    - `find_tool_friction` — tools that errored, with your follow-up
    - (Pass `window_days` if specified.)
@@ -40,4 +40,4 @@ Markdown with three level-2 headings. Terse. Quote user corrections verbatim.
 
 ## Notes
 
-- This skill is diagnostic only. `/suggest-automations` translates friction into skill/memory recommendations.
+- This skill is diagnostic only. `/axnr:flow` translates friction into skill/memory recommendations.

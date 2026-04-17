@@ -1,15 +1,15 @@
 ---
-name: suggest-automations
-description: Propose specific skills, memory entries, CLAUDE.md additions, or plugin ideas to build — derived from patterns in your own Claude Code transcripts over the last N days. Use when you want a ranked action list for improving your DevX.
+name: flow
+description: Propose specific skills, memory entries, CLAUDE.md additions, or plugin ideas to build — derived from patterns in your own Claude Code transcripts over the last N days. Use when you want a ranked action list for improving your DevX flow.
 ---
 
-# /suggest-automations
+# /axnr:flow
 
 Translate observed patterns into concrete automation proposals.
 
 ## Steps
 
-1. In parallel, call all four pattern tools (from the `axnr-devx-introspect` server):
+1. In parallel, call all four pattern tools (from the `axnr` MCP server):
    - `find_repeated_session_starts`
    - `find_repeated_corrections`
    - `find_tool_friction`
