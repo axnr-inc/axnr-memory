@@ -1,11 +1,12 @@
 {
   "name": "axnr",
-  "version": "0.4.1",
-  "description": "Solo introspection over your own Claude Code transcripts. Surfaces repeated corrections, repeated session-openers, tool friction, and Bash command patterns — ranked automation candidates for skills, memory entries, and CLAUDE.md additions.",
+  "version": "0.5.0",
+  "description": "Solo introspection over your own Claude Code transcripts plus a lightweight local event log. Surfaces repeated corrections, repeated session-openers, tool friction, Bash patterns, and fast-path error patterns — ranked automation candidates for skills, memory entries, and CLAUDE.md additions.",
   "author": {
     "name": "Sashank",
     "email": "sashank@actioneer.com"
   },
+  "hooks": "./hooks/hooks.json",
   "mcpServers": {
     "axnr": {
       "command": "python3",
