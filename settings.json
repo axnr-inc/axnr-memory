@@ -1,6 +1,9 @@
 {
   "transcripts_root": "~/.claude/projects",
+  "events_root": "~/.axnr/events",
   "window_days": 7,
   "min_cluster_frequency": 2,
-  "max_session_messages_returned": 200
+  "max_session_messages_returned": 200,
+  "log_successful_tool_calls": false,
+  "enabled": true
 }

@@ -12,9 +12,16 @@ Produce a friction diagnostic from your transcripts.
 1. In parallel, call (from the `axnr` MCP server):
    - `find_repeated_corrections` — clusters of "no, not that" moments
    - `find_tool_friction` — tools that errored, with your follow-up
+   - `find_error_patterns` — fast-path error mining from the local event log
    - Pass `window_days: 0` if the user said "all time" / "everything" / "full history".
    - Pass an explicit number if the user said "last N days".
    - Otherwise omit and let the configured default (7) stand.
+
+   Note: `find_tool_friction` returns a `source` field — either `events` (fast
+   path, reads `~/.axnr/events/`) or `transcripts` (fallback, walks JSONL).
+   Both produce the same output shape; you don't need to branch on it, but if
+   source is `transcripts` with no errors found, it's fine to mention that the
+   event log is empty (the hooks haven't fired yet).
 
 2. Render three sections. If a section has zero results, print `- (none in window)` — do not fabricate.
 
@@ -25,10 +32,11 @@ Produce a friction diagnostic from your transcripts.
    - Up to 2 examples with: the correction text, what Claude was doing before, and which session (project + session_id truncated to 8 chars)
 
 ### Tool errors
-   For each tool (ordered by frequency):
+   Merge `find_tool_friction` + `find_error_patterns`. For each tool (ordered by frequency):
    - Tool name + error frequency
    - Up to 2 example error_preview excerpts (first 120 chars)
-   - The user's follow-up text if present
+   - The user's follow-up text if present (from friction's transcript path)
+   - If `find_error_patterns` returned distinct error signatures for this tool, list them as sub-bullets — those are the repeat offenders worth codifying.
 
 ### Top irritants
    Combine the above into a prioritized bullet list:

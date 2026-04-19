@@ -8,8 +8,8 @@
     {
       "name": "axnr",
       "source": "./",
-      "description": "Solo introspection over your own Claude Code transcripts. Surfaces repeated corrections, repeated session-opener phrases, tool friction, and frequent Bash commands — ranked automation candidates for skills, memory entries, and plugins.",
-      "version": "0.4.1"
+      "description": "Solo introspection over your own Claude Code transcripts plus a lightweight local event log. Surfaces repeated corrections, repeated session-opener phrases, tool friction, Bash patterns, and fast-path error patterns — ranked automation candidates for skills, memory entries, and plugins.",
+      "version": "0.5.0"
     }
   ]
 }
